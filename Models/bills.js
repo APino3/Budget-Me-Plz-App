@@ -1,46 +1,48 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../Config/Connection");
 
 class Bills extends Model {}
 
-Bills.init({
+Bills.init(
+  {
     id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
     name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     cost: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     due_date: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     auto_pay: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
     debited: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
     user_id: {
-        type: DataTypes.INTEGER,
-        references: { model: "user", key: "id" },
-        onDelete: "CASCADE",
+      type: DataTypes.INTEGER,
+      references: { model: "user", key: "id" },
+      onDelete: "CASCADE",
     },
-}, {
+  },
+  {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: "bills",
-});
+  }
+);
 
 module.exports = Bills;
