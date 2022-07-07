@@ -11,7 +11,11 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ layoutsDir: __dirname + "/views/", ...helpers });
+const hbs = exphbs.create({
+  defaultLayout: "Layouts/main",
+  layoutsDir: __dirname + "/Views/",
+  ...helpers,
+});
 
 const sess = {
   secret: "super secret",
@@ -37,8 +41,8 @@ app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-console.log(path.join(__dirname, "public"));
-app.use(express.static(path.join(__dirname, "public")));
+console.log(path.join(__dirname, "Public"));
+app.use(express.static(path.join(__dirname, "Public")));
 
 // app.use(routes);
 app.use(require("./Controllers/"));
