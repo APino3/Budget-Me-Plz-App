@@ -11,7 +11,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({ layoutsDir: __dirname + "/views", ...helpers });
 
 const sess = {
   secret: "super secret",
@@ -27,8 +27,13 @@ app.use(session(sess));
 
 // Inform Express.js which template engine we're using
 app.engine("handlebars", hbs.engine);
+// app.engine(
+//   "handlebars",
+//   hbs.engine({
+//     layoutsDir: __dirname + "/views",
+//   })
+// );
 app.set("view engine", "handlebars");
-app.set("views", path.join(__dirname, "./views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
