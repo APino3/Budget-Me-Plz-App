@@ -40,7 +40,7 @@ router.get("/login", (req, res) => {
     return;
   }
 
-  res.render("login.handlebars");
+  res.render("login");
 });
 
 //7.2.22 after logging in
