@@ -11,7 +11,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ layoutsDir: __dirname + "/views", ...helpers });
+const hbs = exphbs.create({ layoutsDir: __dirname + "/views/", ...helpers });
 
 const sess = {
   secret: "super secret",
